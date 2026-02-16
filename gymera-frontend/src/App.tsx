@@ -6,7 +6,7 @@ import Login from './pages/login/page'
 import Register from './pages/register/page'
 
 function App() {
-  console.log("sdfsd")
+  
   return (
     <Routes>
       <Route path="/" element={<Home />} />
