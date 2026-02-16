@@ -2,7 +2,7 @@ import axios from "axios";
 
 
 export const api = axios.create({
-    baseURL: process.env.NEXT_PUBLIC_API_URL
+    baseURL: import.meta.env.VITE_API_URL || "http://localhost:3000"
 })
 
 //Attaching access token
@@ -34,7 +34,7 @@ api.interceptors.response.use(
             if (refreshToken) {
                 try {
                     const res = await axios.post(
-                        `${process.env.NEXT_PUBLIC_API_URL}/auth/refresh`,
+                        `${import.meta.env.VITE_API_URL || "http://localhost:3000"}/auth/refresh`,
                         { refreshToken }
                     )
 

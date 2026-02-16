@@ -1,3 +1,4 @@
+import { api } from "../lib/api";
 import type { ApiResponse } from "../types/api";
 import type { AuthData } from "../types/auth";
 
@@ -16,6 +17,27 @@ export const login = async (
             success: false,
             statusCode: 500,
             message: "Network error, Please try again .",
+            error: error.message
+        }
+    }
+}
+
+export const register = async (
+    name: string,
+    email: string,
+    password: string
+): Promise<ApiResponse<AuthData>> => {
+    try {
+        const res = await api.post<ApiResponse<AuthData>>("/auth/register", {name, email, password})
+        return res.data
+    } catch (error: any) {
+        if(error.response?.data) {
+            return error.response.data
+        }
+        return {
+            success: false,
+            statusCode: 500,
+            message: "Network error, Please try again.",
             error: error.message
         }
     }
