@@ -4,7 +4,7 @@ export interface User {
     email: string,
 }
 
-export interface Authresponse {
+export interface AuthData {
     accessToken: string,
     refreshToken: string,
     user: User
